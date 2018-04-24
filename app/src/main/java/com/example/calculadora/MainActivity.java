@@ -1,239 +1,139 @@
 package com.example.calculadora;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
-    Button numero1,numero2,numero3,numero4,numero5,numero6,numero7,numero8,numero9,numero0,BtDel,BtMas,BtMenos,BtDividir,BtMultiplicar,BtComa,BtIgual;
-    TextView TxResultado, TxOperacion;
+import java.text.DecimalFormat;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private TextView displayText;
+    private static final String DIGITOS = "0123456789.";
+    private Boolean hayOperador = false;
+
+    DecimalFormat df = new DecimalFormat("@###########");
+
+    Calculadora mCalculadora;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        numero0= (Button) findViewById(R.id.numero0);
-        numero1= (Button) findViewById(R.id.numero1);
-        numero2= (Button) findViewById(R.id.numero2);
-        numero3= (Button) findViewById(R.id.numero3);
-        numero4= (Button) findViewById(R.id.numero4);
-        numero5= (Button) findViewById(R.id.numero5);
-        numero6= (Button) findViewById(R.id.numero6);
-        numero7= (Button) findViewById(R.id.numero7);
-        numero8= (Button) findViewById(R.id.numero8);
-        numero9= (Button) findViewById(R.id.numero9);
-        BtComa= (Button) findViewById(R.id.BtComa);
-        BtDel= (Button) findViewById(R.id.BtDel);
-        BtDividir= (Button) findViewById(R.id.BtDividir);
-        BtIgual= (Button) findViewById(R.id.BtIgual);
-        BtMas= (Button) findViewById(R.id.BtMas);
-        BtMenos= (Button) findViewById(R.id.BtMenos);
-        BtMultiplicar= (Button) findViewById(R.id.BtMultiplicar);
-        TxOperacion= (TextView) findViewById(R.id.TxOperacion);
-        TxResultado= (TextView) findViewById(R.id.TxResultado);
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
-        numero0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String operacion = TxOperacion.getText().toString();
-                TxOperacion.setText(operacion+"0");
+        mCalculadora = new Calculadora();
 
-            }
-        });
+        displayText = (TextView) findViewById(R.id.textViewDisplay);
 
-        numero1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TxOperacion.setText(TxOperacion.getText().toString()+"1");
-            }
-        });
+        df.setMinimumFractionDigits(0);
+        df.setMinimumIntegerDigits(1);
+        df.setMaximumIntegerDigits(8);
 
-        numero2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TxOperacion.setText(TxOperacion.getText().toString()+"2");
-            }
-        });
+        findViewById(R.id.button0).setOnClickListener(this);
+        findViewById(R.id.button1).setOnClickListener(this);
+        findViewById(R.id.button2).setOnClickListener(this);
+        findViewById(R.id.button3).setOnClickListener(this);
+        findViewById(R.id.button4).setOnClickListener(this);
+        findViewById(R.id.button5).setOnClickListener(this);
+        findViewById(R.id.button6).setOnClickListener(this);
+        findViewById(R.id.button7).setOnClickListener(this);
+        findViewById(R.id.button8).setOnClickListener(this);
+        findViewById(R.id.button9).setOnClickListener(this);
 
-        numero3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TxOperacion.setText(TxOperacion.getText().toString()+"3");
-            }
-        });
+        findViewById(R.id.buttonSumar).setOnClickListener(this);
+        findViewById(R.id.buttonRestar).setOnClickListener(this);
+        findViewById(R.id.buttonMultiplicar).setOnClickListener(this);
+        findViewById(R.id.buttonDividir).setOnClickListener(this);
+        findViewById(R.id.buttonMasMenos).setOnClickListener(this);
+        findViewById(R.id.buttonPunto).setOnClickListener(this);
+        findViewById(R.id.buttonIgual).setOnClickListener(this);
+        findViewById(R.id.buttonLimpiar).setOnClickListener(this);
+        /*findViewById(R.id.buttonClearMemory).setOnClickListener(this);
+        findViewById(R.id.buttonRecallMemory).setOnClickListener(this);*/
 
-        numero4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TxOperacion.setText(TxOperacion.getText().toString()+"4");
-            }
-        });
-
-        numero5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TxOperacion.setText(TxOperacion.getText().toString()+"5");
-            }
-        });
-
-        numero6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TxOperacion.setText(TxOperacion.getText().toString()+"6");
-            }
-        });
-
-        numero7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TxOperacion.setText(TxOperacion.getText().toString()+"7");
-            }
-        });
-
-        numero8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TxOperacion.setText(TxOperacion.getText().toString()+"8");
-            }
-        });
-
-        numero9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TxOperacion.setText(TxOperacion.getText().toString()+"9");
-            }
-        });
-
-
-
-        BtComa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!TxOperacion.getText().toString().equals("")) {
-                    String ultimo = TxOperacion.getText().toString().substring(TxOperacion.getText().toString().length() - 1);
-                    if (!ultimo.equals("x") && !ultimo.equals("-") && !ultimo.equals("/") && !ultimo.equals("+") && !ultimo.equals(".")) {
-                        TxOperacion.setText(TxOperacion.getText().toString() + ".");
-                    }
-                }
-            }
-        });
-
-        BtDel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!TxOperacion.getText().toString().equals("")) {
-                    String ultimo = TxOperacion.getText().toString().substring(0,TxOperacion.getText().toString().length() - 1);
-                    TxResultado.setText("");
-                    TxOperacion.setText(ultimo);
-                }
-            }
-        });
-
-        BtMas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!TxOperacion.getText().toString().equals("")) {
-                    String ultimo = TxOperacion.getText().toString().substring(TxOperacion.getText().toString().length() - 1);
-                    if (!ultimo.equals("x") && !ultimo.equals("-") && !ultimo.equals("/") && !ultimo.equals("+") && !ultimo.equals(".")) {
-                        TxOperacion.setText(Calcular() + "+");
-                    }
-                }
-            }
-        });
-
-        BtMenos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!TxOperacion.getText().toString().equals("")) {
-                    String ultimo = TxOperacion.getText().toString().substring(TxOperacion.getText().toString().length() - 1);
-                    if (!ultimo.equals("x") && !ultimo.equals("-") && !ultimo.equals("/") && !ultimo.equals("+") && !ultimo.equals(".")) {
-                        TxOperacion.setText(Calcular() + "-");
-                    }
-                }
-            }
-        });
-
-        BtDividir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!TxOperacion.getText().toString().equals("")) {
-                    String ultimo = TxOperacion.getText().toString().substring(TxOperacion.getText().toString().length() - 1);
-                    if (!ultimo.equals("x") && !ultimo.equals("-") && !ultimo.equals("/") && !ultimo.equals("+") && !ultimo.equals(".")) {
-                        TxOperacion.setText(Calcular() + "/");
-                    }
-                }
-            }
-        });
-
-        BtMultiplicar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!TxOperacion.getText().toString().equals("")) {
-                    String ultimo = TxOperacion.getText().toString().substring(TxOperacion.getText().toString().length() - 1);
-                    if (!ultimo.equals("x") && !ultimo.equals("-") && !ultimo.equals("/") && !ultimo.equals("+") && !ultimo.equals(".")) {
-                        TxOperacion.setText(Calcular() + "x");
-                    }
-
-                }
-            }
-        });
-
-        BtIgual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!TxOperacion.getText().toString().equals("")) {
-                    String ultimo = TxOperacion.getText().toString().substring(TxOperacion.getText().toString().length() - 1);
-                    if (!ultimo.equals("x") && !ultimo.equals("-") && !ultimo.equals("/") && !ultimo.equals("+") && !ultimo.equals(".")) {
-                    TxResultado.setText(Calcular());
-                    }
-                }
-            }
-        });
-
+        // The following buttons only exist in layout-land (Landscape mode) and require extra attention.
+        // The messier option is to place the buttons in the regular layout too and set android:visibility="invisible".
+        if (findViewById(R.id.buttonRaiz) != null) {
+            findViewById(R.id.buttonRaiz).setOnClickListener(this);
+        }
+        if (findViewById(R.id.buttonElevado) != null) {
+            findViewById(R.id.buttonElevado).setOnClickListener(this);
+        }
+        if (findViewById(R.id.buttonInvertir) != null) {
+            findViewById(R.id.buttonInvertir).setOnClickListener(this);
+        }
+        if (findViewById(R.id.buttonSin) != null) {
+            findViewById(R.id.buttonSin).setOnClickListener(this);
+        }
+        if (findViewById(R.id.buttonCos) != null) {
+            findViewById(R.id.buttonCos).setOnClickListener(this);
+        }
+        if (findViewById(R.id.buttonTan) != null) {
+            findViewById(R.id.buttonTan).setOnClickListener(this);
+        }
 
     }
 
-    public String Calcular(){
+    @Override
+    public void onClick(View v) {
 
-        String cadena = TxOperacion.getText().toString();
-        String resultado= cadena;
+        String buttonPresionado = ((Button) v).getText().toString();
 
-        int restar = cadena.indexOf("-");
-        if(restar!=-1){
-            String[] parts = TxOperacion.getText().toString().split("-");
-            float part1 = Float.parseFloat(parts[0]);
-            float part2 = Float.parseFloat(parts[1]);
-            resultado = Float.toString(part1-part2);
+        if (DIGITOS.contains(buttonPresionado)) {
+
+            if (hayOperador) {
+
+                if (buttonPresionado.equals(".") && displayText.getText().toString().contains(".")) {
+
+                } else {
+                    displayText.append(buttonPresionado);
+                }
+
+            } else {
+
+                if (buttonPresionado.equals(".")) {
+                    displayText.setText(0 + buttonPresionado);
+                } else {
+                    displayText.setText(buttonPresionado);
+                }
+
+                hayOperador = true;
+            }
+
+        } else {
+            if (hayOperador) {
+
+                mCalculadora.setOperand(Double.parseDouble(displayText.getText().toString()));
+                hayOperador = false;
+            }
+
+            mCalculadora.performOperation(buttonPresionado);
+            displayText.setText(df.format(mCalculadora.getResult()));
+
         }
 
-        int sumar = cadena.indexOf("+");
-        if(sumar!=-1){
-           // char c = (char)43;
-            String[] parts = TxOperacion.getText().toString().split("\\+");
-            float part1 = Float.parseFloat(parts[0]);
-            float part2 = Float.parseFloat(parts[1]);
-            resultado = Float.toString(part1+part2);
-        }
-
-        int dividir = cadena.indexOf("/");
-        if(dividir!=-1){
-            String[] parts = TxOperacion.getText().toString().split("/");
-            float part1 = Float.parseFloat(parts[0]);
-            float part2 = Float.parseFloat(parts[1]);
-            resultado = Float.toString(part1/part2);
-        }
-
-        int multiplicar = cadena.indexOf("x");
-        if(multiplicar!=-1){
-            String[] parts = TxOperacion.getText().toString().split("x");
-            float part1 = Float.parseFloat(parts[0]);
-            float part2 = Float.parseFloat(parts[1]);
-            resultado = Float.toString(part1*part2);
-        }
-
-        return resultado;
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble("OPERAND", mCalculadora.getResult());
+        outState.putDouble("MEMORY", mCalculadora.getMemory());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mCalculadora.setOperand(savedInstanceState.getDouble("OPERAND"));
+        mCalculadora.setMemory(savedInstanceState.getDouble("MEMORY"));
+        displayText.setText(df.format(mCalculadora.getResult()));
+    }
+
 }

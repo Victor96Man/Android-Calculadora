@@ -1,232 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Todo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.calculadora.MainActivity">
+    tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/calculadora"
+    <TextView
+        android:id="@+id/textViewDisplay"
+        style="@style/DisplayStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1.8">
-
-        <TextView
-            android:id="@+id/TxOperacion"
-            style="@style/TextoOperacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:gravity="right|center"
-            android:maxLines="1" />
-
-        <TextView
-            android:id="@+id/TxResultado"
-            style="@style/TextoResultado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:maxLines="1" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/botones"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/numeros"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#2E2E2E"
-            android:orientation="vertical">
+    <!-- Row 1 -->
 
-            <LinearLayout
-                android:id="@+id/primerafila"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+    <!-- Row 2 -->
+    <Button
+        android:id="@+id/buttonLimpiar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/buttonLimpiar"
+        android:theme="@style/FunctionButtonStyle"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPorcentaje"
+        app:layout_constraintEnd_toStartOf="@+id/buttonPorcentaje"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPorcentaje"/>
 
-                <Button
-                    android:id="@+id/numero7"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="7" />
+    <Button
+        android:id="@+id/buttonPorcentaje"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:singleLine="false"
+        android:text="@string/buttonPorcentaje"
+        android:theme="@style/FunctionButtonStyle"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMasMenos"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMasMenos"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonLimpiar"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMasMenos"/>
 
-                <Button
-                    android:id="@+id/numero8"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="8" />
+    <Button
+        android:id="@+id/buttonMasMenos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/buttonMasMenos"
+        android:theme="@style/FunctionButtonStyle"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDividir"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDividir"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonPorcentaje"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDividir"/>
 
-                <Button
-                    android:id="@+id/numero9"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="9" />
-            </LinearLayout>
+    <Button
+        android:id="@+id/buttonDividir"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:text="@string/buttonDividir"
+        android:theme="@style/FunctionButtonStyle"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMultiplicar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonMasMenos"/>
 
-            <LinearLayout
-                android:id="@+id/segundafila"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+    <!-- Row 3 -->
 
-                <Button
-                    android:id="@+id/numero4"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="4" />
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button7"
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintEnd_toStartOf="@+id/button8"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button8"/>
 
-                <Button
-                    android:id="@+id/numero5"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="5" />
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button8"
+        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/button9"/>
 
-                <Button
-                    android:id="@+id/numero6"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="6" />
-            </LinearLayout>
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button9"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMultiplicar"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMultiplicar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button8"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMultiplicar"/>
 
-            <LinearLayout
-                android:id="@+id/tercerafila"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+    <Button
+        android:id="@+id/buttonMultiplicar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="@string/buttonMultiplicar"
+        android:theme="@style/FunctionButtonStyle"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRestar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button9"/>
 
-                <Button
-                    android:id="@+id/numero1"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="1" />
+    <!-- Row 4 -->
 
-                <Button
-                    android:id="@+id/numero2"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="2" />
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button4"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5"/>
 
-                <Button
-                    android:id="@+id/numero3"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="3" />
-            </LinearLayout>
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button5"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintEnd_toStartOf="@+id/button6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button6"/>
 
-            <LinearLayout
-                android:id="@+id/cuartafila"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button6"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRestar"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRestar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRestar"/>
 
-                <Button
-                    android:id="@+id/BtComa"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="." />
+    <Button
+        android:id="@+id/buttonRestar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:text="@string/buttonRestar"
+        android:theme="@style/FunctionButtonStyle"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSumar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button6"/>
 
-                <Button
-                    android:id="@+id/numero0"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="0" />
+    <!-- Row 5 -->
 
-                <Button
-                    android:id="@+id/BtIgual"
-                    style="@style/ButtonNumero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="=" />
-            </LinearLayout>
-        </LinearLayout>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button1"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2"/>
 
-        <LinearLayout
-            android:id="@+id/operaciones"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:background="#6E6E6E"
-            android:orientation="vertical">
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button2"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/button3"/>
 
-            <Button
-                android:id="@+id/BtDel"
-                style="@style/ButtonOperador"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="12"
-                android:text="Del" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/button3"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSumar"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSumar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSumar"/>
 
-            <Button
-                android:id="@+id/BtMenos"
-                style="@style/ButtonOperador"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="12"
-                android:text="-" />
+    <Button
+        android:id="@+id/buttonSumar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:text="@string/buttonSumar"
+        android:theme="@style/FunctionButtonStyle"
+        app:layout_constraintBottom_toTopOf="@+id/buttonIgual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button3"/>
 
-            <Button
-                android:id="@+id/BtMas"
-                style="@style/ButtonOperador"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="12"
-                android:text="+" />
+    <!-- Row 6 -->
 
-            <Button
-                android:id="@+id/BtDividir"
-                style="@style/ButtonOperador"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="12"
-                android:text="/" />
+    <Button
+        android:id="@+id/button0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button0"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPunto"
+        app:layout_constraintEnd_toStartOf="@+id/buttonPunto"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPunto"/>
 
-            <Button
-                android:id="@+id/BtMultiplicar"
-                style="@style/ButtonOperador"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="12"
-                android:text="x" />
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonPunto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonPunto"
+        app:layout_constraintBottom_toTopOf="@+id/buttonIgual"
+        app:layout_constraintEnd_toStartOf="@+id/buttonIgual"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/button0"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIgual"/>
+
+    <Button
+        android:id="@+id/buttonIgual"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonIgual"
+        android:theme="@style/FunctionButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/buttonPunto"/>
+
+
+</android.support.constraint.ConstraintLayout>

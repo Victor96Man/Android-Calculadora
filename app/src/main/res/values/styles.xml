@@ -1,5 +1,6 @@
-<resources>
+<resources
 
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -8,52 +9,31 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TextoOperacion">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">53sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:typeface">normal</item>
-    </style>
-
-    <style name="TextoResultado">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">30sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/colorGris</item>
-        <item name="android:typeface">normal</item>
-    </style>
-
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="ButtonNumero" parent="Widget.AppCompat.Button">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">25sp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:background">@color/colorNumero</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/colorBlanco</item>
-        <item name="android:typeface">normal</item>
+
+    <style name="DisplayStyle">
+        <item name="android:background">#ffffff</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment" tools:targetApi="17">textEnd</item>
+        <item name="android:gravity">end</item>
     </style>
 
-    <style name="ButtonOperador" parent="Widget.AppCompat.Button">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">25sp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:background">@color/colorBoton</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/colorBlanco</item>
-        <item name="android:typeface">normal</item>
+    <style name="MemoryButtonStyle" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#A1887F</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="FunctionButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">#9E9E9E</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily" tools:targetApi="16">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>
